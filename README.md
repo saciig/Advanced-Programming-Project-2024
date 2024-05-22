@@ -16,25 +16,25 @@ This project proposes a dashboard that allows the user to perform financial anal
 ## Instructions to run the code :
 ## 1) Download the following Python libraries:
 
--*dash:*A sleek and powerful Python library for creating analytical web applications.
+-**dash:** A sleek and powerful Python library for creating analytical web applications.
 
--*yfinance:*A versatile Python library for accessing and analyzing stock market data from Yahoo Finance.
+-**yfinance:** A versatile Python library for accessing and analyzing stock market data from Yahoo Finance.
 
--*pandas:*A flexible and powerful data manipulation and analysis library for Python.
+-**pandas:** A flexible and powerful data manipulation and analysis library for Python.
 
--*numpy:*A fundamental Python library for numerical computing and array processing.
+-**numpy:** A fundamental Python library for numerical computing and array processing.
 
--*plotly.graph_objects:*A comprehensive Python module for creating interactive and high-quality visualizations.
+-**plotly.graph_objects:** A comprehensive Python module for creating interactive and high-quality visualizations.
 
--*datetime:*A robust Python module for handling dates and times.
+-**datetime:** A robust Python module for handling dates and times.
 
--*dash_bootstrap_components:*A library for integrating Bootstrap components into Dash applications for responsive and stylish web designs.
+-**dash_bootstrap_components:** A library for integrating Bootstrap components into Dash applications for responsive and stylish web designs.
 
--*rapidfuzz:*A fast and efficient Python library for fuzzy string matching and string comparison.
+-**rapidfuzz:** A fast and efficient Python library for fuzzy string matching and string comparison.
 
--*os:*A Python module for interacting with the operating system, enabling file and directory manipulation.
+-**os:** A Python module for interacting with the operating system, enabling file and directory manipulation.
 
--*time:*A Python module for working with time-related functions, including time manipulation and measurement.
+-**time:** A Python module for working with time-related functions, including time manipulation and measurement.
 
 ## 2) Dowload the script: Dashboard_Financial_Analysis and the csv file: companies at the *same* place in your computer.
 
