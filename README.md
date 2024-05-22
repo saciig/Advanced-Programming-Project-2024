@@ -1,6 +1,6 @@
 # Advanced-Programming-Project-2024
 
-#The Financial Analysis Dashboard
+# The Financial Analysis Dashboard
 
 *Author:* Isaac Graber 
 *Institution:* University of Lausanne, Msc. in Economics  
