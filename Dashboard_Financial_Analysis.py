@@ -162,7 +162,7 @@ class FinancialAnalysis:
         fig.update_layout(
             title=title,
             xaxis_title='Daily Returns',
-            yaxis_title='Probability',  # Change from 'Frequency' to 'Probability'
+            yaxis_title='Probability', 
             barmode='overlay',
             bargap=0.1  
         )
@@ -251,7 +251,7 @@ class FinancialAnalysis:
             title=title,
             xaxis_title='Date',
             yaxis_title='Weekly Returns (%)',
-            yaxis_tickformat='%',  # Format y-axis ticks as percentage
+            yaxis_tickformat='%',  
             legend_title='Company'
         )
         return fig
