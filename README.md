@@ -14,7 +14,7 @@
 This project proposes a dashboard that allows the user to perform financial analysis on one or two assets simultaneously. These analyses go from the simple index evolution to more complex analysis like the linear regression. This application is designed to be a useful tool for any person wanting a fast way to have analyses and take investment decisions. This is also useful for educational purposes because the results can easily be incorporated to slides or documents since we can download them directly. In one sentence, the purpose of this application is to make finance more accessible.
 
 ## Instructions to run the code :
-## 1) Download the following Python libraries:
+# 1) Download the following Python libraries:
 
 -**dash:** A sleek and powerful Python library for creating analytical web applications.
 
@@ -36,6 +36,6 @@ This project proposes a dashboard that allows the user to perform financial anal
 
 -**time:** A Python module for working with time-related functions, including time manipulation and measurement.
 
-## 2) Dowload the script: Dashboard_Financial_Analysis and the csv file: companies at the *same* place in your computer.
+# 2) Dowload the script: Dashboard_Financial_Analysis and the csv file: companies at the *same* place in your computer.
 
-## 3) Run the code and open the link to the Dashboard.
+# 3) Run the code and open the link to the Dashboard.
