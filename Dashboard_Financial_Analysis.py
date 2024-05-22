@@ -54,8 +54,16 @@ def get_company_name(ticker):
             return stock_info.info.get('longName', stock_info.info.get('shortName', ticker))
         except Exception as e:
             print(f"Failed to fetch name for ticker {ticker}: {e}")
+            
+            return ticker
+    
+# Creation of a function that access the currency in which the ticker is exprimed 
+def get_currency(ticker):
+        ticker_info = yf.Ticker(ticker).info
+        currency = ticker_info['currency']
         
-            return ticker  
+        return currency
+
 
 ### Creation of the FinancialAnalysis class 
 
@@ -83,32 +91,39 @@ class FinancialAnalysis:
         
         # Download the data with yfinance library
         for ticker in tickers_to_fetch:
-            data = yf.download(ticker, start=start_date, end=end_date)
+            try:
+                data = yf.download(ticker, start=start_date, end=end_date)
+                
+                if data.empty:
+                    print(f"No data found for {ticker}, skipping.")
+                    continue 
+
+                self.data[ticker] = {
+                    'dates': data.index,
+                    'prices': data['Adj Close'],
+                    'daily Returns': data['Adj Close'].pct_change(),
+                    'daily volatility': data['Adj Close'].pct_change().rolling(window=20).std()
+                }
             
-            if data.empty:
-                print(f"No data found for {ticker}, skipping.")
+            except Exception as e:
+                print(f"An error occurred while processing {ticker}: {e}")
                 continue
-            
-            data['daily Returns'] = data['Adj Close'].pct_change()
-            data['daily volatility'] = data['daily Returns'].rolling(window=20).std()
-            self.data[ticker] = {
-                'dates': data.index,
-                'prices': data['Adj Close'],
-                'daily Returns': data['daily Returns'],
-                'daily volatility': data['daily volatility']
-            }
+
+    ### Definition of our analysis 
     
-    ### Definition of our analysis
-    
-    # Define the index evolution
+    # Plot the index evolution and include currency information in the title
     def plot_index_evolution(self):
         fig = go.Figure()
         titles = []
         for ticker in self.tickers:
-            company_name = get_company_name(ticker)  
-            titles.append(company_name)
-            
-            fig.add_trace(go.Scatter(x=self.data[ticker]['dates'], y=self.data[ticker]['prices'], mode='lines', name=f'{company_name} Prices'))
+            if ticker in self.data:
+                company_name = get_company_name(ticker)
+                currency=get_currency(ticker)
+                titles.append(f"{company_name}")
+                
+                fig.add_trace(go.Scatter(
+                    x=self.data[ticker]['dates'],y=self.data[ticker]['prices'],mode='lines',name=f'{company_name} Prices ({currency})'))
+
         # Dynamic adaptation of titles
         if len(titles) == 1:
             title = f"Evolution of Index prices {titles[0]}"
@@ -116,10 +131,10 @@ class FinancialAnalysis:
             title = " and ".join(titles)
             title = f"Evolution of Index for {title}"
         else:
-            title = "Evolution of Daily Volatility"
+            title = "Evolution of Index prices"
         fig.update_layout(title=title, xaxis_title='Date', yaxis_title='Adjusted Close Price')
         return fig
-    
+
     # Define the returns distribution
     def plot_returns_distribution(self):
         fig = go.Figure()
