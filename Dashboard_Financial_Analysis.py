@@ -139,6 +139,15 @@ class FinancialAnalysis:
     def plot_returns_distribution(self):
         fig = go.Figure()
         titles = []
+        
+        # Determine global min and max for bin edges
+        # Ensure histograms are plotted on the same scale
+        min_return = min(self.data[ticker]['daily Returns'].min() for ticker in self.tickers)
+        max_return = max(self.data[ticker]['daily Returns'].max() for ticker in self.tickers)
+        
+        # Each histogram is segmented into identical ranges
+        bin_edges = np.linspace(min_return, max_return, 51)  
+
         for ticker in self.tickers:
             company_name = get_company_name(ticker)  
             titles.append(company_name)
@@ -147,8 +156,12 @@ class FinancialAnalysis:
                 x=daily_returns,
                 name=f'{company_name}',
                 opacity=0.5,
-                nbinsx=50,
-                histnorm='probability'  
+                xbins=dict(  
+                    start=min_return,
+                    end=max_return,
+                    size=(max_return - min_return) / 50
+                ),
+                histnorm='probability'
             ))
 
         if len(titles) == 1:
@@ -167,7 +180,6 @@ class FinancialAnalysis:
             bargap=0.1  
         )
         return fig
-
 
     # Define the volatility evolution 
     def plot_volatility_evolution(self):
@@ -216,7 +228,7 @@ class FinancialAnalysis:
             xaxis_title='Date',
             yaxis_title='Daily Returns (%)',
             yaxis_tickformat='%',  
-            legend_title='Company'
+            
         )
         return fig
 
@@ -252,7 +264,7 @@ class FinancialAnalysis:
             xaxis_title='Date',
             yaxis_title='Weekly Returns (%)',
             yaxis_tickformat='%',  
-            legend_title='Company'
+            
         )
         return fig
     
@@ -372,7 +384,7 @@ class Dashboard_Financial_Analysis:
                     type='text', 
                     placeholder='Type a company...', 
                     style={
-                        'width': '235px',  
+                        'width': '240px',  
                         'height': '25px',  
                         'font-size': 'smaller', 
                         'padding': '10px 5px',}
@@ -382,7 +394,7 @@ class Dashboard_Financial_Analysis:
                     id='company-suggestions',
                     placeholder="Open to select a company",
                     style={
-                        'width': '235px',
+                        'width': '240px',
                         'margin-top': '5px',
                         'font-size': 'smaller',},
                     options=[],
