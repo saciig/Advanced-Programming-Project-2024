@@ -147,8 +147,10 @@ class FinancialAnalysis:
                 x=daily_returns,
                 name=f'{company_name}',
                 opacity=0.5,
-                nbinsx=50
-                ))
+                nbinsx=50,
+                histnorm='probability'  
+            ))
+
         if len(titles) == 1:
             title = f"Distribution of daily Returns for {titles[0]}"
         elif len(titles) > 1:
@@ -160,12 +162,12 @@ class FinancialAnalysis:
         fig.update_layout(
             title=title,
             xaxis_title='Daily Returns',
-            yaxis_title='Frequency',
+            yaxis_title='Probability',  # Change from 'Frequency' to 'Probability'
             barmode='overlay',
             bargap=0.1  
         )
-        fig.update_traces(histnorm='percent')
         return fig
+
 
     # Define the volatility evolution 
     def plot_volatility_evolution(self):
@@ -186,6 +188,7 @@ class FinancialAnalysis:
 
         fig.update_layout(title=title, xaxis_title='Date', yaxis_title='Volatility')
         return fig
+    
     # Define the daily returns evolution
     def plot_daily_returns_evolution(self):
         fig = go.Figure()
