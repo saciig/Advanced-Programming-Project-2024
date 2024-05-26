@@ -126,7 +126,7 @@ class FinancialAnalysis:
 
         # Dynamic adaptation of titles
         if len(titles) == 1:
-            title = f"Evolution of Index prices {titles[0]}"
+            title = f"Evolution of Index prices {titles[0]} in {currency}"
         elif len(titles) > 1:
             title = " and ".join(titles)
             title = f"Evolution of Index for {title}"
