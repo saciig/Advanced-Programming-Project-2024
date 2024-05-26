@@ -37,6 +37,6 @@ This project proposes a dashboard that allows the user to perform financial anal
 
 -**time:** A Python module for working with time-related functions, including time manipulation and measurement.
 
-### 2) Dowload the script: Dashboard_Financial_Analysis and the csv file: companies at the *same* place in your computer.
+### 2) Before running, download the script: Dashboard_Financial_Analysis and the CSV file: companies to the *same* location on your computer. If this is not done, the code will not work!
 
 ### 3) Run the code and open the link to the Dashboard.
